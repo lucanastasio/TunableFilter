@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
 from MainWindow import Ui_MainWindow
 import sys, glob
-from MCP4728 import MCP4728
+from MCP4728 import MCP4728, Channel
 
 
 class Application(QtWidgets.QMainWindow):

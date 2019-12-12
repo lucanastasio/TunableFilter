@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>902</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>902</width>
+    <height>520</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>902</width>
+    <height>1000</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MCP4728 GUI</string>
+  </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhNone</set>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="MinimumExpanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_10">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Channel A</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="SliderChannelA">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>256</height>
+              </size>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhNone</set>
+             </property>
+             <property name="maximum">
+              <number>4095</number>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+             <property name="sliderPosition">
+              <number>0</number>
+             </property>
+             <property name="tracking">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksBothSides</enum>
+             </property>
+             <property name="tickInterval">
+              <number>256</number>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QDoubleSpinBox" name="SpinBoxChannelA">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="prefix">
+              <string/>
+             </property>
+             <property name="suffix">
+              <string> V</string>
+             </property>
+             <property name="decimals">
+              <number>4</number>
+             </property>
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>1.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item alignment="Qt::AlignRight">
+              <widget class="QLabel" name="label">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string> Vref</string>
+               </property>
+               <property name="buddy">
+                <cstring>VrefChannelA</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="VrefChannelA">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Internal (2.048V)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Internal (4.096V)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>External (Vdd)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Channel B</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="SliderChannelB">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>256</height>
+              </size>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhNone</set>
+             </property>
+             <property name="maximum">
+              <number>4095</number>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+             <property name="sliderPosition">
+              <number>0</number>
+             </property>
+             <property name="tracking">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksBothSides</enum>
+             </property>
+             <property name="tickInterval">
+              <number>256</number>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QDoubleSpinBox" name="SpinBoxChannelB">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="prefix">
+              <string/>
+             </property>
+             <property name="suffix">
+              <string> V</string>
+             </property>
+             <property name="decimals">
+              <number>4</number>
+             </property>
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>1.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item alignment="Qt::AlignRight">
+              <widget class="QLabel" name="label_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string> Vref</string>
+               </property>
+               <property name="buddy">
+                <cstring>VrefChannelB</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="VrefChannelB">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Internal (2.048V)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Internal (4.096V)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>External (Vdd)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Channel C</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="SliderChannelC">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>256</height>
+              </size>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhNone</set>
+             </property>
+             <property name="maximum">
+              <number>4095</number>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+             <property name="sliderPosition">
+              <number>0</number>
+             </property>
+             <property name="tracking">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksBothSides</enum>
+             </property>
+             <property name="tickInterval">
+              <number>256</number>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QDoubleSpinBox" name="SpinBoxChannelC">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="prefix">
+              <string/>
+             </property>
+             <property name="suffix">
+              <string> V</string>
+             </property>
+             <property name="decimals">
+              <number>4</number>
+             </property>
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>1.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item alignment="Qt::AlignRight">
+              <widget class="QLabel" name="label_3">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string> Vref</string>
+               </property>
+               <property name="buddy">
+                <cstring>VrefChannelC</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="VrefChannelC">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Internal (2.048V)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Internal (4.096V)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>External (Vdd)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Channel D</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="SliderChannelD">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>256</height>
+              </size>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhNone</set>
+             </property>
+             <property name="maximum">
+              <number>4095</number>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
+             <property name="sliderPosition">
+              <number>0</number>
+             </property>
+             <property name="tracking">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksBothSides</enum>
+             </property>
+             <property name="tickInterval">
+              <number>256</number>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QDoubleSpinBox" name="SpinBoxChannelD">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="prefix">
+              <string/>
+             </property>
+             <property name="suffix">
+              <string> V</string>
+             </property>
+             <property name="decimals">
+              <number>4</number>
+             </property>
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>1.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item alignment="Qt::AlignRight">
+              <widget class="QLabel" name="label_4">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string> Vref</string>
+               </property>
+               <property name="buddy">
+                <cstring>VrefChannelD</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="VrefChannelD">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Internal (2.048V)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Internal (4.096V)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>External (Vdd)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>6</number>
+        </property>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>10</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+          <item alignment="Qt::AlignRight">
+           <widget class="QLabel" name="label_10">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>i2c address</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+            <property name="buddy">
+             <cstring>SpinBoxAddress</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="SpinBoxAddress">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>90</width>
+              <height>27</height>
+             </size>
+            </property>
+            <property name="inputMethodHints">
+             <set>Qt::ImhDigitsOnly|Qt::ImhPreferUppercase</set>
+            </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
+            <property name="minimum">
+             <number>96</number>
+            </property>
+            <property name="maximum">
+             <number>103</number>
+            </property>
+            <property name="value">
+             <number>96</number>
+            </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="3">
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>i2c bus</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ComboBox" name="ComboBoxBus">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="editable">
+             <bool>false</bool>
+            </property>
+            <property name="currentText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+          <item alignment="Qt::AlignRight">
+           <widget class="QLabel" name="label_9">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Vdd voltage</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+            <property name="buddy">
+             <cstring>SpinBoxVdd</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="SpinBoxVdd">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>90</width>
+              <height>27</height>
+             </size>
+            </property>
+            <property name="suffix">
+             <string> V</string>
+            </property>
+            <property name="decimals">
+             <number>3</number>
+            </property>
+            <property name="minimum">
+             <double>2.700000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>5.500000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="3">
+         <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,0,0">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Maximum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>10</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="CheckBoxUpdate">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Continuous update</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Maximum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>10</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="6">
+         <widget class="QPushButton" name="PushButtonLoad">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>160</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Load from EEPROM</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QPushButton" name="PushButtonWrite">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Write values</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <widget class="QPushButton" name="PushButtonSave">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>160</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Save to EEPROM</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="QPushButton" name="PushButtonRead">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Read values</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Maximum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Maximum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="7">
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>10</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>ComboBox.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

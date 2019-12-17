@@ -6,4 +6,5 @@
 *.opt
 *.stderr.txt
 *.vin
-DATA_SETS/
+DATA_SETS
+TEMP

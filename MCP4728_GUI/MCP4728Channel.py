@@ -21,37 +21,33 @@ class Channel:
 
 	from MCP4728 import Cmd
 
-	VREF_VDD = 0x0
-	VREF_INT = 0x1
-	VREF_INT_BIT = 0x80
+	# first element = select bit
+	# second element = binary value of the bit in position
 
-	GAIN_X2_BIT = 0x10
-	GAIN_X1 = 0x0
-	GAIN_X2 = 0x1
-	PWR = {
-		'POWER_ON' : 0x0,
-		'DOWN_1K'  : 0x1,
-		'DOWN_100K': 0x2,
-		'DOWN_500K': 0x3
-	}
-	PWR_MSK = 0x60
+	class VrefSel(Enum):
+		VDD = [0x0, 0x00]
+		INT = [0x1, 0x80]
+		MASK = 0x80
 
-	class Power(Enum):
+	class GainSel(Enum):
+		X1 = [0x0, 0x00]
+		X2 = [0x1, 0x10]
+		MASK = 0x10
+
+	class PowerSel(Enum):
+		ON = [0x0, 0x00]
+		DOWN_1K = [0x1, 0x20]
+		DOWN_100K = [0x2, 0x40]
+		DOWN_500K = [0x3, 0x60]
 		MASK = 0x60
-		POWER_ON = 0x00
-		POWER_ON_BITS = 0x00
-		DOWN_1K = 0x01
-		DOWN_1K_BITS = 0x20
-		DOWN_100K = 0x02
-		DOWN_100K_BITS = 0x40
-		DOWN_500K = 0x03
-		DOWN_500K_BITS = 0x60
 
 	LSBITS = 0x0F
 
-	def __init__(self, dacSel=0x00, parent = None):
+	def __init__(self, dacSel=0x00, parent=None):
 		"""
-
+		:param dacSel: channel number selection
+		:type dacSel: int
+		:param parent: MCP4728 DAC the channel belongs to
 		:type parent: MCP4728.MCP4728
 		"""
 		self.voltage = 0.0
@@ -59,12 +55,9 @@ class Channel:
 		self.step = 0.0
 		self.dacSel = dacSel
 		self.Vref = 0.0
-		self.vrefSel = None
-		self.vrefBit = None
-		self.gainSel = None
-		self.gainBit = None
-		self.powerDownSel = None
-		self.powerDownBits = None
+		self.vrefSel = self.vrefSel.INT
+		self.gainSel = self.GainSel.X1
+		self.powerSel = self.PowerSel.ON
 		self.parent = parent
 
 	def __setattr__(self, key, value):
@@ -74,22 +67,26 @@ class Channel:
 			self.__dict__['Vref'] = value
 			self.__dict__['step'] = value / 4096.0
 			self.__dict__['voltage'] = self.code * self.step
-			[self.__dict__['vrefSel'], self.__dict__['vrefBit']] =\
-				[self.VREF_INT, self.VREF_INT_BIT] if value is 2.048 or 4.096 else [self.VREF_VDD, 0x00]
-			[self.__dict__['gainSel'], self.__dict__['vrefBit']] =\
-				[self.GAIN_X2, self.GAIN_X2_BIT] if value is 4.096 else [self.GAIN_X1, 0x00]
+			self.__dict__['VrefSel'] = self.vrefSel.INT if value is 2.048 or 4.096 else self.vrefSel.VDD
+			self.__dict__['gainSel'] = self.GainSel.X2 if value is 4.096 else self.GainSel.X1
 			self.parent.WriteGain()
 			self.parent.WriteVref()
 		elif key is 'voltage':
 			if (value > self.Vref) or (value < 0):
-				raise AttributeError('Voltage outside of range')
+				raise AttributeError('Voltage outside of Vref range')
 			self.__dict__['voltage'] = value
 			self.__dict__['code'] = value / self.step
 			if self.parent.update:
 				self.parent.MultiWrite([self.dacSel])
 		elif key is 'code':
-			pass
+			if (value > 4095) or (value < 0):
+				raise AttributeError('DAC code outside of 0-4095 range')
+			self.__dict__['code'] = value
+			self.__dict__['voltage'] = value * self.step
+			if self.parent.update:
+				self.parent.MultiWrite([self.dacSel])
 		elif key is 'power':
+
 			pass
 		else:
 			self.__dict__[key] = value
@@ -100,7 +97,7 @@ class Channel:
 		:return: encoded channel data
 		"""
 		code = self.code.to_bytes(2, 'big')
-		data = list(self.Cmd.FAST_WR.value | (self.powerDownSel >> 1) | code[0])
+		data = list(self.Cmd.FAST_WR.value | (self.powerSel[1] >> 1) | code[0])
 		data.append(code[1])
 		return data
 
@@ -110,6 +107,6 @@ class Channel:
 		:return: encoded channel data
 		"""
 		code = self.code.to_bytes(2, 'big')
-		data = list(self.vrefSel | self.powerDownSel | self.gainSel | code[0])
+		data = list(self.vrefSel[1] | self.powerSel[1] | self.gainSel[1] | code[0])
 		data.append(code[1])
 		return data

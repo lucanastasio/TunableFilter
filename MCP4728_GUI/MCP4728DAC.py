@@ -68,8 +68,8 @@ class DAC:
 			raise IOError('Unexpected value')
 		dacSel = (data[0] & DAC.DAC_BITS) >> 4
 		channel = self.Channel(dacSel)
-		channel.vrefSel = data[1] & self.Channel.VREF_INT_BIT
-		channel.powerDownSel = data[1] & self.Channel.PWR_MSK
-		channel.gainSel = data[1] & self.Channel.GAIN_X2_BIT
+		channel.vrefSel = data[1] & self.Channel.VrefSel.MASK
+		channel.powerSel = data[1] & self.Channel.PowerSel.MASK
+		channel.gainSel = data[1] & self.Channel.GainSel.MASK
 		channel.code = int.from_bytes([(data[1] & self.Channel.LSBITS), data[2]], 'big')
 		self[dacSel] = channel

@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from PyQt5 import QtWidgets, QtCore
 from MainWindow import Ui_MainWindow
 import sys, glob
-from MCP4728 import MCP4728, Channel
+from MCP4728 import MCP4728
 
 
 class Application(QtWidgets.QMainWindow):

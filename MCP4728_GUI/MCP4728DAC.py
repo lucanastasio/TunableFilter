@@ -15,8 +15,14 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class DAC:
-	DAC_BITS = 0x30
-	ZERO_BIT = 0x08
+	# bit mask for reading the channel number
+	DAC_READ_BITS = 0x30
+	# number of right shifts to read the channel number in decimal
+	DAC_READ_SHIFT = 4
+	# this bit is set to 1 when reading from EEPROM or 0 when reading from registers
+	EEPROM_READ_BIT = 0x08
+	# DAC binary code least significant bits mask
+	CODE_LSBITS_MASK = 0x0F
 
 	from MCP4728Channel import Channel
 
@@ -64,12 +70,10 @@ class DAC:
 		:type data: byte list of length 3
 		:return: the new Channel instance
 		"""
-		if (data[0] & DAC.ZERO_BIT) is not 0:
-			raise IOError('Unexpected value')
-		dacSel = (data[0] & DAC.DAC_BITS) >> 4
+		dacSel = (data[0] & self.DAC_READ_BITS) >> self.DAC_READ_SHIFT
 		channel = self.Channel(dacSel)
-		channel.vrefSel = data[1] & self.Channel.VrefSel.MASK
-		channel.powerSel = data[1] & self.Channel.PowerSel.MASK
-		channel.gainSel = data[1] & self.Channel.GainSel.MASK
-		channel.code = int.from_bytes([(data[1] & self.Channel.LSBITS), data[2]], 'big')
+		channel.vrefSel = data[1] & self.Channel.VrefSel.MASK.value
+		channel.powerSel = data[1] & self.Channel.PowerSel.MASK.value
+		channel.gainSel = data[1] & self.Channel.GainSel.MASK.value
+		channel.code = int.from_bytes([(data[1] & self.CODE_LSBITS_MASK), data[2]], 'big')
 		self[dacSel] = channel

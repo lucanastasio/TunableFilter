@@ -43,6 +43,8 @@ class MCP4728:
 	RDY_BIT = 0x80
 	POR_BIT = 0x40
 	ADDR_BITS = 0x07
+	# this bit is set to 1 when reading from EEPROM or 0 when reading from registers
+	EEPROM_READ_BIT = 0x08
 
 	def __init__(self, bus=None, address=DEV_CODE, addrBits=0x00, update=None):
 		self.address = address | addrBits
@@ -166,7 +168,7 @@ class MCP4728:
 		"""
 		if self.trigger(update):
 			data = Cmd.SEL_PWR.value | (self.Channels.A.powerDownSel << 2) | self.Channels.B.powerDownSel
-			data[1] = (self.Channels.C.powerDownSel <<  6) | (self.Channels.D.powerDownSel << 4)
+			data[1] = (self.Channels.C.powerDownSel << 6) | (self.Channels.D.powerDownSel << 4)
 			msg = i2c_msg.write(self.address, data)
 			self.i2c.i2c_rdwr(msg)
 
@@ -175,18 +177,21 @@ class MCP4728:
 		Reads registers or EEPROM contents and optionally saves values in current instance
 		:param restore: which contents to restore, either None (default), 'R' or 0 for registers and 'E' or 1 for EEPROM
 		:type restore: str
-		:return: list of DAC objects [registers. EEPROM]
+		:return: list of DAC objects [registers, EEPROM]
 		"""
 		msg = i2c_msg.read(self.address, 24)
-		# TODO: in case it doesn't work, try to split in messages of 3 bytes each
 		self.i2c.i2c_rdwr(msg)
 		msg = bytes(msg)
 		self.ReadStatus(msg[0])
 		reg = self.DAC()
 		eep = self.DAC()
-		for i in range(0, 23, 6):
-			reg.Decode(msg[i:i+3])
-			eep.Decode(msg[i+3:i+6])
+
+		for i in range(0, 23, 3):
+			if bool(msg[i] & self.EEPROM_READ_BIT) is True:
+				eep.Decode(msg[i:i+3])
+			else:
+				reg.Decode(msg[i:i+3])
+
 		if restore is 'R' or 0:
 			self.Channels = reg
 		elif restore is 'E' or 1:
@@ -200,7 +205,6 @@ class MCP4728:
 		:param sByte: optional (default None) for internal reading
 		:type sByte: byte
 		"""
-		# TODO: verify if reading only one byte is actually supported
 		if sByte is None:
 			sByte = self.i2c.read_byte(self.address)
 		self.EEPROMready = bool(sByte & MCP4728.RDY_BIT)

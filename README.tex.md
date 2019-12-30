@@ -1,7 +1,3 @@
-README.tex
-
-README
-
 # Tunable Filter with varactors
 ## Idea (our goal)
 The idea of this project is to design a tunable filter in order to move the resonance frequency with the usage of varactors. The varactors are used in place of the capacitors in resonators thanks of the property to vary their capacitance as a function of the voltage applied across their terminals. So the varactor is the tuning component in this project. The use of this component will be explained in the following notes.
@@ -24,7 +20,7 @@ The design specifications used in the design of this filter are the following:
 ## Design of the ideal Filter
 We started with the design of the ideal pass-band filter in order to verify that all the specifications can be satisfied. For the design we use the ***Insertion Loss Method*** taking the low-pass Filter prototype and changing the series and shunts components in order to have a pass-band response. The schematic of the ideal pass-band filter is the following:
 
-![Ideal pass-band filter. First design](C:\Users\edamo\Documents\GitHub\TunableFilter\images "Ideal pass-band filter. First design.")
+![Ideal pass-band filter](images/Ideal_Reference_Filter.PNG  "Ideal pass-band filter")
 
 These are the formulas used in our first design:
 - $L1 = \frac{g_1 Z_0}{\Delta \omega_0}$

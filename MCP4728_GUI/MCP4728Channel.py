@@ -1,103 +1,111 @@
-#  Copyright (c) 2019 Luca Anastasio
-#  anastasio.lu(at)gmail.com
-#
-#  This program is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
-#
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# TODO: correct usage of channel configuration bits
+"""
+MCP4728 Python Library
+Copyright (C) 2019 Luca Anastasio
+<anastasio.lu@gmail.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 from enum import Enum
 from warnings import warn
 
 
 class Channel:
-
-	from MCP4728 import Cmd
-
-	# first element = select bit value, second element = binary value of the bit in position
-	BIT = 0
-	VAL = 1
+	# bit mask for reading the channel number
+	DAC_READ_BITS = 0x30
+	# number of right shifts to read the channel number in decimal
+	DAC_READ_SHIFT = 4
+	# this bit is set to 1 when reading from EEPROM or 0 when reading from registers
+	EEPROM_READ_BIT = 0x08
+	# DAC binary code least significant bits mask
+	CODE_LSBITS_MASK = 0x0F
 	# byte order used with the DAC binary code
 	ORD = 'big'
 	# first element of a list is considered most significant byte in 'big' ordering
 	MSB = 0
 	LSB = 1
 
-	class ChannelSel(Enum):
-		A = [0x0, 0x00]
-		B = [0x1, 0x02]
-		C = [0x2, 0x04]
-		D = [0x3, 0x06]
-		MASK = 0x06
+	CMD_FAST_WR = 0x00
 
 	class VrefSel(Enum):
-		VDD = [0x0, 0x00]
-		INT = [0x1, 0x80]
+		VDD = 0x0
+		INT = 0x1
 		MASK = 0x80
 
 	class GainSel(Enum):
-		X1 = [0x0, 0x00]
-		X2 = [0x1, 0x10]
+		X1 = 0x0
+		X2 = 0x1
 		MASK = 0x10
 
 	class PowerSel(Enum):
-		ON = [0x0, 0x00]
-		DOWN_1K = [0x1, 0x20]
-		DOWN_100K = [0x2, 0x40]
-		DOWN_500K = [0x3, 0x60]
+		ON = 0x0
+		DOWN_1K = 0x1
+		DOWN_100K = 0x2
+		DOWN_500K = 0x3
 		MASK = 0x60
 
-	def __init__(self, channelSel=0x00, parent=None):
+	def __init__(self, channelSel=0x00, parentDac=None):
 		"""
 		:param channelSel: channel number selection
 		:type channelSel: int
-		:param parent: MCP4728 DAC the channel belongs to
-		:type parent: MCP4728.MCP4728
+		:param parentDac: MCP4728 DAC the channel belongs to
+		:type parentDac: MCP4728.MCP4728
 		"""
 		self.vout = 0.0
 		self.code = 0
-		self.step = 0.0
+		self.step = 2.048 / 4096
 		self.channelSel = channelSel
-		self.vref = 0.0
-		self.vrefSel = self.vrefSel.INT.value
+		self.vref = 2.048
+		self.vrefSel = self.VrefSel.INT.value
 		self.gainSel = self.GainSel.X1.value
 		self.powerSel = self.PowerSel.ON.value
-		self.parent = parent
+		self.parentDac = parentDac
+
+	def getVrefIndex(self):
+		if self.vrefSel == self.VrefSel.VDD.value:
+			return 2
+		if self.gainSel == self.GainSel.X2.value:
+			return 1
+		return 0
 
 	def setVref(self, newVal):
-		if (newVal > 5.5) or ((newVal < 2.7) and newVal is not 2.048):
+		if (newVal > 5.5) or (newVal < 2.7) and newVal != 2.048:
 			warn('Vref outside of Vdd range, are you sure?')
-		self.__dict__['vref'] = newVal
-		self.__dict__['step'] = newVal / 4096
-		self.__dict__['vout'] = self.code * self.step
-		self.__dict__['vrefSel'] = self.vrefSel.INT.value if newVal is 2.048 or 4.096 else self.vrefSel.VDD.value
-		self.__dict__['gainSel'] = self.GainSel.X2.value if newVal is 4.096 else self.GainSel.X1.value
-		self.parent.WriteGain()
-		self.parent.WriteVref()
+		self.vref = newVal
+		self.step = newVal / 4096
+		self.vout = self.code * self.step
+		self.vrefSel = self.VrefSel.INT.value if (newVal == 2.048 or newVal == 4.096) else self.VrefSel.VDD.value
+		self.gainSel = self.GainSel.X2.value if (newVal == 4.096) else self.GainSel.X1.value
+		if self.parentDac:
+			self.parentDac.WriteGain()
+			self.parentDac.WriteVref()
 
 	def setVout(self, newVal):
 		if (newVal > self.vref) or (newVal < 0):
 			raise AttributeError('Voltage outside of Vref range')
-		self.__dict__['vout'] = newVal
-		self.__dict__['code'] = newVal / self.step
-		if self.parent.update:
-			self.parent.MultiWrite([self.channelSel])
+		self.vout = newVal
+		self.code = int(newVal / self.step)
+		if self.parentDac:
+			self.parentDac.MultiWrite([self.channelSel])
 
 	def setCode(self, newVal):
 		if (newVal > 4095) or (newVal < 0):
 			raise AttributeError('DAC code outside of 0-4095 range')
-		self.__dict__['code'] = newVal
-		self.__dict__['vout'] = newVal * self.step
-		if self.parent.update:
-			self.parent.MultiWrite([self.channelSel])
+		self.code = int(newVal)
+		self.vout = newVal * self.step
+		if self.parentDac:
+			self.parentDac.MultiWrite([self.channelSel])
 
 	def setStep(self, newVal):
 		if (newVal > 5.5 / 4096) or (newVal < 2.048 / 4096):
@@ -106,38 +114,13 @@ class Channel:
 
 	def setPower(self, newVal):
 		if isinstance(newVal, self.PowerSel):
-			self.__dict__['powerSel'] = newVal.value
-		elif isinstance(newVal, str):
-			self.__dict__['powerSel'] = self.PowerSel[newVal].value
-
-	def __setattr__(self, key, value):
-		if key is 'Vref':
-			self.setVref(value)
-		elif key is 'vout':
-			self.setVout(value)
-		elif key is 'code':
-			self.setCode(value)
-		elif key is 'step':
-			self.setStep(value)
-		elif key is 'power':
-			self.setPower(value)
+			self.powerSel = newVal.value
+		elif isinstance(newVal, (str, int)):
+			self.powerSel = self.PowerSel[newVal].value
 		else:
-			self.__dict__[key] = value
-
-	def getVref(self, bitOrVal):
-		return self.__dict__['vrefSel'][bitOrVal]
-
-	def __getattr__(self, item):
-		if item is 'vrefBit':
-			return self.getVref(self.BIT)
-		elif item is 'vrefVal':
-			return self.getVref(self.VAL)
-		elif item is 'vrefBit':
-			return self.__dict__['vrefSel'][self.BIT]
-		elif item is 'vrefVal':
-			return self.__dict__['vrefSel'][self.VAL]
-		else:
-			return self.__dict__[item]
+			raise TypeError
+		if self.parentDac:
+			self.parentDac.WritePower()
 
 	def EncodeFast(self):
 		"""
@@ -145,8 +128,7 @@ class Channel:
 		:return: encoded channel data
 		"""
 		code = self.code.to_bytes(2, self.ORD)
-		data = list(self.Cmd.FAST_WR.value | (self.powerSel[self.VAL] >> 1) | code[self.MSB])
-		data.append(code[self.LSB])
+		data = [(self.CMD_FAST_WR | self.powerSel << 4 | code[self.MSB]), code[self.LSB]]
 		return data
 
 	def Encode(self):
@@ -155,6 +137,20 @@ class Channel:
 		:return: encoded channel data
 		"""
 		code = self.code.to_bytes(2, self.ORD)
-		data = list(self.vrefSel[self.VAL] | self.powerSel[self.VAL] | self.gainSel[self.VAL] | code[self.MSB])
-		data.append(code[self.LSB])
+		data = [(self.vrefSel << 7 | self.powerSel << 5 | self.gainSel << 4 | code[self.MSB]), code[self.LSB]]
 		return data
+
+	def Decode(self, data):
+		"""
+		Decode binary data read form the IC into readable format
+		:param data: binary data to be decoded
+		:type data: byte list of length 3
+		:return: the new Channel instance
+		"""
+		self.channelSel = (data[0] & self.DAC_READ_BITS) >> self.DAC_READ_SHIFT
+		self.vrefSel = int(bool(data[1] & self.VrefSel.MASK.value))
+		self.powerSel = int(bool(data[1] & self.PowerSel.MASK.value))
+		self.gainSel = int(bool(data[1] & self.GainSel.MASK.value))
+		self.code = int.from_bytes([(data[1] & self.CODE_LSBITS_MASK), data[2]], 'big')
+		vref = [2.048, 4.096, 0.0]
+		self.setVref(vref[self.getVrefIndex()])

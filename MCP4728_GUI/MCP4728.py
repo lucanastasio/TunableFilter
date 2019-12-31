@@ -21,23 +21,25 @@ from smbus2 import SMBus, i2c_msg
 from enum import Enum
 
 
-class Cmd(Enum):
-	FAST_WR = 0x00
-	MULT_WR = 0x40
-	SING_WR = 0x58
-	SEQ_WR = 0x50
-	SEL_VREF = 0x80
-	SEL_GAIN = 0xC0
-	SEL_PWR = 0xA0
-	GEN_RST = 0x06
-	GEN_WAKE = 0x09
-	GEN_UPD = 0x08
-	GEN_ADDR = 0x0C
-
-
 class MCP4728:
+	class Cmd(Enum):
+		FAST_WR = 0x00
+		MULT_WR = 0x40
+		SING_WR = 0x58
+		SEQ_WR = 0x50
+		SEL_VREF = 0x80
+		SEL_GAIN = 0xC0
+		SEL_PWR = 0xA0
+		GEN_RST = 0x06
+		GEN_WAKE = 0x09
+		GEN_UPD = 0x08
+		GEN_ADDR = 0x0C
 
 	from MCP4728DAC import DAC
+
+	# first element = select bit value, second = binary value of the bit in position
+	BIT = 0
+	VAL = 1
 
 	DEV_CODE = 0x60  # or base address
 	RDY_BIT = 0x80
@@ -49,7 +51,7 @@ class MCP4728:
 	def __init__(self, bus=None, address=DEV_CODE, addrBits=0x00, update=None):
 		self.address = address | addrBits
 		self.i2c = SMBus(bus)
-		self.Channels = self.DAC(parent=self)
+		self.channel = self.DAC(parentDac=self)
 		self.EEPROMready = None
 		self.VddGood = None
 		self.update = update
@@ -58,9 +60,6 @@ class MCP4728:
 		if self.i2c.fd is not None:
 			self.i2c.close()
 		self.i2c.open(bus)
-
-	def SetAddress(self, address):
-		self.address = address
 
 	def SetAddressBits(self, addrBits):
 		self.address = self.DEV_CODE | addrBits
@@ -74,7 +73,7 @@ class MCP4728:
 		"""
 		if self.trigger(update):
 			data = []
-			for channel in self.Channels:
+			for channel in self.channel:
 				data.extend(channel.EncodeFast())
 			msg = i2c_msg.write(self.address, data)
 			self.i2c.i2c_rdwr(msg)
@@ -84,7 +83,7 @@ class MCP4728:
 		Writes the selected channel(s) register(s) (EEPROM not affected)
 		(including: data input register, gain, power down, Vref)
 		Also determines if Vout gets updated or not
-		:param channelList: the channel(s) to write (e.g. 'ABCD' (default) or 'ABC' or 'CD' or 'B' and combinations)
+		:param channelList: the channel(s) to write (e.g. 'AB...' or (0,1,...))
 		:type channelList: str or list of int
 		:param update: trigger an update of Vout if True, else just write register, defaults to self.update
 		:type update: bool
@@ -92,8 +91,8 @@ class MCP4728:
 		trig = self.triggerBit(update)
 		data = []
 		for c in channelList:
-			channel = self.Channels[c]
-			data.append(Cmd.MULT_WR.value | (channel.dacSel << 1) | trig)
+			channel = self.channel[c]
+			data.append(self.Cmd.MULT_WR.value | (channel.channelSel << 1) | trig)
 			data.extend(channel.Encode())
 		msg = i2c_msg.write(self.address, data)
 		self.i2c.i2c_rdwr(msg)
@@ -101,15 +100,16 @@ class MCP4728:
 	def SequentialWrite(self, start='A', update=None):
 		"""
 		Writes registers and EEPROM starting from the given channel to channel D
-		:param start: the starting channel (e.g. 'A' (default) or 'B' or 'C' or 'D')
-		:type start: str
+		:param start: the starting channel (e.g. 'A' (default) or B,C,D; 0 or 1,2,3 etc...)
+		:type start: str or int
 		:param update: trigger an update of Vout if True, else just write registers and EEPROM
 		:type update: bool
 		"""
 		trig = self.triggerBit(update)
-		data = [(Cmd.SEQ_WR.value | self.Channels[start].dacSel << 1 | trig)]
-		for c in range(ord(start), ord('D')+1):
-			data.extend(self.Channels[chr(c)].Encode())
+		start = int(ord(start) - ord('A')) if isinstance(start, str) else start
+		data = [(self.Cmd.SEQ_WR.value | self.channel[start].channelSel << 1 | trig)]
+		for c in range(start, 4):
+			data.extend(self.channel[c].Encode())
 		msg = i2c_msg.write(self.address, data)
 		self.i2c.i2c_rdwr(msg)
 
@@ -122,11 +122,8 @@ class MCP4728:
 		:type update: bool
 		"""
 		trig = self.triggerBit(update)
-		channel = self.Channels[channel]
-		data = [(Cmd.SING_WR.value | channel.dacSel << 1 | trig)]
-		code = channel.code.to_bytes(2, 'big')
-		data.append(channel.vrefSel | channel.powerDownSel | channel.gainSel | code[0])
-		data.append(code[1])
+		channel = self.channel[channel]
+		data = [(self.Cmd.SING_WR.value | channel.channelSel << 1 | trig), channel.Encode()]
 		msg = i2c_msg.write(self.address, data)
 		self.i2c.i2c_rdwr(msg)
 
@@ -143,9 +140,10 @@ class MCP4728:
 		:type update: bool
 		"""
 		if self.trigger(update):
-			data = Cmd.SEL_VREF.value >> 3
-			for channel in self.Channels:
-				data = (data | channel.vrefSel) << 1
+			data = self.Cmd.SEL_VREF.value >> 4
+			for channel in self.channel:
+				data <<= 1
+				data |= channel.vrefSel
 			self.i2c.write_byte(self.address, data)
 
 	def WriteGain(self, update=None):
@@ -155,9 +153,10 @@ class MCP4728:
 		:type update: bool
 		"""
 		if self.trigger(update):
-			data = Cmd.SEL_GAIN.value >> 3
-			for channel in self.Channels:
-				data = (data | channel.gainSel) << 1
+			data = self.Cmd.SEL_GAIN.value >> 4
+			for channel in self.channel:
+				data <<= 1
+				data |= channel.gainSel
 			self.i2c.write_byte(self.address, data)
 
 	def WritePower(self, update=None):
@@ -167,9 +166,12 @@ class MCP4728:
 		:type update: bool
 		"""
 		if self.trigger(update):
-			data = Cmd.SEL_PWR.value | (self.Channels.A.powerDownSel << 2) | self.Channels.B.powerDownSel
-			data[1] = (self.Channels.C.powerDownSel << 6) | (self.Channels.D.powerDownSel << 4)
-			msg = i2c_msg.write(self.address, data)
+			data = self.Cmd.SEL_PWR.value >> 4
+			for channel in self.channel:
+				data <<= 2
+				data |= channel.powerSel
+			data <<= 4
+			msg = i2c_msg.write(self.address, list(data.to_bytes(2, 'big')))
 			self.i2c.i2c_rdwr(msg)
 
 	def ReadAll(self, restore=None):
@@ -186,16 +188,18 @@ class MCP4728:
 		reg = self.DAC()
 		eep = self.DAC()
 
-		for i in range(0, 23, 3):
+		for i in range(0, 24, 3):
+			channel = self.DAC.Channel(parentDac=self)
+			channel.Decode(msg[i:i + 3])
 			if bool(msg[i] & self.EEPROM_READ_BIT) is True:
-				eep.Decode(msg[i:i+3])
+				eep[channel.channelSel] = channel
 			else:
-				reg.Decode(msg[i:i+3])
+				reg[channel.channelSel] = channel
 
 		if restore is 'R' or 0:
-			self.Channels = reg
+			self.channel = reg
 		elif restore is 'E' or 1:
-			self.Channels = eep
+			self.channel = eep
 		return [reg, eep]
 
 	def ReadStatus(self, sByte=None):
@@ -216,23 +220,27 @@ class MCP4728:
 				'POR': bool(statusByte & MCP4728.POR_BIT),
 				'addrBits': statusByte & MCP4728.ADDR_BITS}
 
+
 	def GeneralCallReset(self):
 		"""
 		Resets devices on bus, devices load EEPROM values afeter reset
 		"""
-		self.i2c.write_byte(i2c_addr=0x00, value=Cmd.GEN_RST.value)
+		#self.i2c.write_byte(i2c_addr=0x00, value=self.Cmd.GEN_RST.value)
+		pass
 
 	def GeneralCallWakeUp(self):
 		"""
 		Resets power down bits for all channels to 00
 		"""
-		self.i2c.write_byte(i2c_addr=0x00, value=Cmd.GEN_WAKE.value)
+		#self.i2c.write_byte(i2c_addr=0x00, value=self.Cmd.GEN_WAKE.value)
+		pass
 
 	def GeneralCallSoftwareUpdate(self):
 		"""
 		Updates all channels' outputs simultaneously
 		"""
-		self.i2c.write_byte(i2c_addr=0x00, value=Cmd.GEN_UPD.value)
+		#self.i2c.write_byte(i2c_addr=0x00, value=self.Cmd.GEN_UPD.value)
+		pass
 
 	@staticmethod
 	def GeneralCallReadAddress():
@@ -245,4 +253,4 @@ class MCP4728:
 		return update if (update is not None) else self.update
 
 	def triggerBit(self, update):
-		return int(not(update if (update is not None) else self.update))
+		return int(not (update if (update is not None) else self.update))

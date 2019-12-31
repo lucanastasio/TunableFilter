@@ -82,26 +82,18 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
        <number>0</number>
       </property>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_14">
-        <item alignment="Qt::AlignHCenter">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under GPL3, Copyright © 2019 Luca Anastasio &lt;a href=&quot;mailto:anastasio.lu@gmail.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;anastasio.lu@gmail.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item alignment="Qt::AlignHCenter">
          <widget class="QGroupBox" name="groupBox">
+          <property name="styleSheet">
+           <string notr="true">border-color: black</string>
+          </property>
           <property name="title">
            <string>Channel A</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item alignment="Qt::AlignHCenter">
-            <widget class="QSlider" name="SliderChannelA">
+            <widget class="QSlider" name="SliderA">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
                <horstretch>0</horstretch>
@@ -144,7 +136,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
             </widget>
            </item>
            <item alignment="Qt::AlignHCenter">
-            <widget class="QDoubleSpinBox" name="SpinBoxChannelA">
+            <widget class="QDoubleSpinBox" name="SpinBoxA">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -167,10 +159,10 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
               <number>4</number>
              </property>
              <property name="maximum">
-              <double>100.000000000000000</double>
+              <double>2.047500000000000</double>
              </property>
              <property name="singleStep">
-              <double>1.000000000000000</double>
+              <double>0.000500000000000</double>
              </property>
             </widget>
            </item>
@@ -191,12 +183,12 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
                 <string> Vref</string>
                </property>
                <property name="buddy">
-                <cstring>VrefChannelA</cstring>
+                <cstring>VrefA</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="VrefChannelA">
+              <widget class="QComboBox" name="VrefA">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -233,12 +225,15 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
         </item>
         <item alignment="Qt::AlignHCenter">
          <widget class="QGroupBox" name="groupBox">
+          <property name="styleSheet">
+           <string notr="true">border-color: black</string>
+          </property>
           <property name="title">
            <string>Channel B</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item alignment="Qt::AlignHCenter">
-            <widget class="QSlider" name="SliderChannelB">
+            <widget class="QSlider" name="SliderB">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
                <horstretch>0</horstretch>
@@ -281,7 +276,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
             </widget>
            </item>
            <item alignment="Qt::AlignHCenter">
-            <widget class="QDoubleSpinBox" name="SpinBoxChannelB">
+            <widget class="QDoubleSpinBox" name="SpinBoxB">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -304,10 +299,10 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
               <number>4</number>
              </property>
              <property name="maximum">
-              <double>100.000000000000000</double>
+              <double>2.047500000000000</double>
              </property>
              <property name="singleStep">
-              <double>1.000000000000000</double>
+              <double>0.000500000000000</double>
              </property>
             </widget>
            </item>
@@ -328,12 +323,12 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
                 <string> Vref</string>
                </property>
                <property name="buddy">
-                <cstring>VrefChannelB</cstring>
+                <cstring>VrefB</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="VrefChannelB">
+              <widget class="QComboBox" name="VrefB">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -370,12 +365,15 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
         </item>
         <item alignment="Qt::AlignHCenter">
          <widget class="QGroupBox" name="groupBox">
+          <property name="styleSheet">
+           <string notr="true">border-color: black</string>
+          </property>
           <property name="title">
            <string>Channel C</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item alignment="Qt::AlignHCenter">
-            <widget class="QSlider" name="SliderChannelC">
+            <widget class="QSlider" name="SliderC">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
                <horstretch>0</horstretch>
@@ -418,7 +416,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
             </widget>
            </item>
            <item alignment="Qt::AlignHCenter">
-            <widget class="QDoubleSpinBox" name="SpinBoxChannelC">
+            <widget class="QDoubleSpinBox" name="SpinBoxC">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -441,10 +439,10 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
               <number>4</number>
              </property>
              <property name="maximum">
-              <double>100.000000000000000</double>
+              <double>2.047500000000000</double>
              </property>
              <property name="singleStep">
-              <double>1.000000000000000</double>
+              <double>0.000500000000000</double>
              </property>
             </widget>
            </item>
@@ -465,12 +463,12 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
                 <string> Vref</string>
                </property>
                <property name="buddy">
-                <cstring>VrefChannelC</cstring>
+                <cstring>VrefC</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="VrefChannelC">
+              <widget class="QComboBox" name="VrefC">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -507,6 +505,9 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
         </item>
         <item alignment="Qt::AlignHCenter">
          <widget class="QGroupBox" name="groupBox">
+          <property name="styleSheet">
+           <string notr="true">border-color: black</string>
+          </property>
           <property name="title">
            <string>Channel D</string>
           </property>
@@ -515,7 +516,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item alignment="Qt::AlignHCenter">
-            <widget class="QSlider" name="SliderChannelD">
+            <widget class="QSlider" name="SliderD">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
                <horstretch>0</horstretch>
@@ -558,7 +559,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
             </widget>
            </item>
            <item alignment="Qt::AlignHCenter">
-            <widget class="QDoubleSpinBox" name="SpinBoxChannelD">
+            <widget class="QDoubleSpinBox" name="SpinBoxD">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -581,10 +582,10 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
               <number>4</number>
              </property>
              <property name="maximum">
-              <double>100.000000000000000</double>
+              <double>2.047500000000000</double>
              </property>
              <property name="singleStep">
-              <double>1.000000000000000</double>
+              <double>0.000500000000000</double>
              </property>
             </widget>
            </item>
@@ -605,12 +606,12 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
                 <string> Vref</string>
                </property>
                <property name="buddy">
-                <cstring>VrefChannelD</cstring>
+                <cstring>VrefD</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="VrefChannelD">
+              <widget class="QComboBox" name="VrefD">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1030,7 +1031,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</str
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="autoFillBackground">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

@@ -14,9 +14,11 @@ set(gca, 'YScale', 'log')
 view([90 -90])
 ~~~
 
-For example, the resultinf function for BB202 was:
+For example, the resulting function for BB202 extracted from the datasheet graph was:
 ~~~matlab
-V(C) = (p1*C^3 + p2*C^2 + p3*C + p4) / (C^4 + q1*C^3 + q2*C^2 + q3*C + q4)
+V(Cx) = (p1*Cx^3 + p2*Cx^2 + p3*Cx + p4) / (Cx^4 + q1*Cx^3 + q2*Cx^2 + q3*Cx + q4)
+% with:
+Cx = (C - 2.006e-11) / 9.593e-12
 p1 = -1312
 p2 = -4819
 p3 = 2384

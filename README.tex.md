@@ -96,9 +96,9 @@ We have to notice that the plus sign in front of $C_{s0i}$ and $C_{s3i}$ is due 
 
 The frequency response at the frequency test of 1GHz of the final design of the ideal filter (without varactor) is shown below for the ripple level of 0.5 dB and 3dB respectively:
 
-![Frequency response 0.5dB](images/Freq_resp_ideal_05dB.PNG  "Frequency response of the ideal filter for 0.5dB ripple level")
+![Frequency response 0.5dB](images/Freq_resp_ideal_05dB.png  "Frequency response of the ideal filter for 0.5dB ripple level")
 
-![Frequency response 3dB](images/Freq_resp_ideal_3dB.PNG  "Frequency response of the ideal filter for 3dB ripple level")
+![Frequency response 3dB](images/Freq_resp_ideal_3dB.png  "Frequency response of the ideal filter for 3dB ripple level")
 
 ## The tunable element: the varactor
 

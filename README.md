@@ -92,7 +92,7 @@ The capacitance of the capacitors are calculated using the classical formulas of
 For the symmetry of the circuit, <img src="/tex/d13451bc523f105bd0e1646ea245c0e3.svg?invert_in_darkmode&sanitize=true" align=middle width=59.34233579999999pt height=22.465723500000017pt/>.
 We have to notice that the plus sign in front of <img src="/tex/418a9ab89262b4343c84da32780776d4.svg?invert_in_darkmode&sanitize=true" align=middle width=29.156666549999986pt height=22.465723500000017pt/> and <img src="/tex/53505c3bf70884fd3832e15e76936ea3.svg?invert_in_darkmode&sanitize=true" align=middle width=29.156666549999986pt height=22.465723500000017pt/> is due to the fact that the minus sign is inclued in their formulas.
 
-The frequency response of the final design of the ideal filter (without varactor) is shown below for the ripple level of 0.5 dB and 3dB respectively:
+The frequency response at the frequency test of 1GHz of the final design of the ideal filter (without varactor) is shown below for the ripple level of 0.5 dB and 3dB respectively:
 
 ![Frequency response 0.5dB](images/Freq_resp_ideal_05dB.PNG  "Frequency response of the ideal filter for 0.5dB ripple level")
 

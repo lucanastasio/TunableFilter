@@ -4,6 +4,7 @@ The idea of this project is the design of a tunable filter with variable resonan
 
 ## Design specifications
 The (approximate) design specifications used in the design of this filter are the following:
+
 - ***Type of Filter:*** band-pass
 - ***Type of Response:*** Chebyshev (equi-ripple)
 - ***Order of the filter:*** Third Order
@@ -15,9 +16,10 @@ The (approximate) design specifications used in the design of this filter are th
 ## Design of the ideal Filter
 The project started with the design of the ideal pass-band filter in order to verify that all the specifications can be satisfied. For the design, the method used was ***Insertion Loss Method*** taking the low-pass Filter prototype and changing the series and shunt components in order to have a pass-band response. Below is the schematic of the ideal pass-band filter:
 
-![Ideal pass-band filter](images/Ideal_Reference_Filter.png  "Ideal pass-band filter")
+![Ideal pass-band filter](images/Ideal_Reference_Filter.PNG  "Ideal pass-band filter")
 
 Formulas used in the first design stage:
+
 - $L1 = \frac{\Delta R_0}{g_1 \omega_0} H$
 - $C1 = \frac{g_1}{\Delta R_0 \omega_0} F$
 - $L2 = \frac{g_2 R_0}{\Delta \omega_0} H$
@@ -26,6 +28,7 @@ Formulas used in the first design stage:
 - $C3 = \frac{g_3}{\Delta R_0 \omega_0} F$
 
 where:
+
 - $g_m$ : band-pass prototype filter coefficients, calculate as a third order Chebyshev filter [unitless]
 - $\Delta$ : fractional bandwidth [%]
 - $\omega_0$ : angular frequency [rad/s]
@@ -46,6 +49,7 @@ C_0 = \frac{1}{L_0 \omega_0^2}
 The above equation gives the proper value of $C_0$ for the desired resonat frequency.
 
 Following are the formulas used to compute ***K*** parameters for each inverter:
+
 - K for the impedence inverter at the source: $K_0=\sqrt{\frac{R_0 L_0BW}{g_0 g_1}}$
 - K for the second impedence inverter: $K_1=\frac{BW L_0}{g_1 g_2}$
 - K for the third impedence inverter: $K_2=\frac{BW L_0}{g_2 g_3}$

@@ -1,0 +1,251 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 10 10
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Analog_DAC:MCP4728 U?
+U 1 1 5E32B1B4
+P 7050 4150
+AR Path="/5E32B1B4" Ref="U?"  Part="1" 
+AR Path="/5E2D7233/5E32B1B4" Ref="U1"  Part="1" 
+F 0 "U1" H 6600 4400 50  0000 C CNN
+F 1 "MCP4728" H 7350 4400 50  0000 C CNN
+F 2 "Package_SO:MSOP-10_3x3mm_P0.5mm" H 7050 3550 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/22187E.pdf" H 7050 4400 50  0001 C CNN
+	1    7050 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5E32B1BA
+P 7050 4550
+AR Path="/5E32B1BA" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D7233/5E32B1BA" Ref="#PWR016"  Part="1" 
+F 0 "#PWR016" H 7050 4300 50  0001 C CNN
+F 1 "GND" H 7055 4377 50  0000 C CNN
+F 2 "" H 7050 4550 50  0001 C CNN
+F 3 "" H 7050 4550 50  0001 C CNN
+	1    7050 4550
+	1    0    0    -1  
+$EndComp
+Text Label 4700 4000 0    50   ~ 0
+SCL
+Text Label 4700 4100 0    50   ~ 0
+SDA
+Text Label 4700 4200 0    50   ~ 0
+~LDAC
+Text Label 4700 4300 0    50   ~ 0
+RDY
+$Comp
+L power:VDDA #PWR?
+U 1 1 5E32B1CE
+P 7050 3850
+AR Path="/5E32B1CE" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D7233/5E32B1CE" Ref="#PWR015"  Part="1" 
+F 0 "#PWR015" H 7050 3700 50  0001 C CNN
+F 1 "VDDA" H 7050 4050 50  0000 C CNN
+F 2 "" H 7050 3850 50  0001 C CNN
+F 3 "" H 7050 3850 50  0001 C CNN
+	1    7050 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5E32B1D4
+P 5850 4350
+AR Path="/5E32B1D4" Ref="C?"  Part="1" 
+AR Path="/5E2D7233/5E32B1D4" Ref="C9"  Part="1" 
+F 0 "C9" H 5965 4396 50  0000 L CNN
+F 1 "100n" H 5965 4305 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5888 4200 50  0001 C CNN
+F 3 "~" H 5850 4350 50  0001 C CNN
+	1    5850 4350
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:L_Core_Ferrite L?
+U 1 1 5E32B1DA
+P 5600 4100
+AR Path="/5E32B1DA" Ref="L?"  Part="1" 
+AR Path="/5E2D7233/5E32B1DA" Ref="L4"  Part="1" 
+F 0 "L4" V 5790 4100 50  0000 C CNN
+F 1 "180R" V 5699 4100 50  0000 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" H 5600 4100 50  0001 C CNN
+F 3 "~" H 5600 4100 50  0001 C CNN
+	1    5600 4100
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:VDDA #PWR?
+U 1 1 5E32B1E6
+P 5850 4000
+AR Path="/5E32B1E6" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D7233/5E32B1E6" Ref="#PWR013"  Part="1" 
+F 0 "#PWR013" H 5850 3850 50  0001 C CNN
+F 1 "VDDA" H 5850 4150 50  0000 C CNN
+F 2 "" H 5850 4000 50  0001 C CNN
+F 3 "" H 5850 4000 50  0001 C CNN
+	1    5850 4000
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5850 4200 5850 4100
+Wire Wire Line
+	5850 4100 5750 4100
+Wire Wire Line
+	5850 4000 5850 4100
+Connection ~ 5850 4100
+$Comp
+L power:GND #PWR?
+U 1 1 5E32B1F0
+P 5850 4500
+AR Path="/5E32B1F0" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D7233/5E32B1F0" Ref="#PWR014"  Part="1" 
+F 0 "#PWR014" H 5850 4250 50  0001 C CNN
+F 1 "GND" H 5855 4327 50  0000 C CNN
+F 2 "" H 5850 4500 50  0001 C CNN
+F 3 "" H 5850 4500 50  0001 C CNN
+	1    5850 4500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5E32B202
+P 4700 4500
+AR Path="/5E32B202" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D7233/5E32B202" Ref="#PWR011"  Part="1" 
+F 0 "#PWR011" H 4700 4250 50  0001 C CNN
+F 1 "GND" H 4705 4327 50  0000 C CNN
+F 2 "" H 4700 4500 50  0001 C CNN
+F 3 "" H 4700 4500 50  0001 C CNN
+	1    4700 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x06_Male J?
+U 1 1 5E32B208
+P 4400 4200
+AR Path="/5E32B208" Ref="J?"  Part="1" 
+AR Path="/5E2D7233/5E32B208" Ref="J3"  Part="1" 
+F 0 "J3" H 4250 4200 50  0000 C CNN
+F 1 "Conn_01x06_Male" H 4400 4700 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical_SMD" H 4400 4200 50  0001 C CNN
+F 3 "~" H 4400 4200 50  0001 C CNN
+	1    4400 4200
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	5350 4000 5350 4100
+Wire Wire Line
+	5450 4100 5350 4100
+Text Label 6350 4050 2    50   ~ 0
+SCL
+Text Label 6350 4150 2    50   ~ 0
+SDA
+Text Label 6350 4250 2    50   ~ 0
+~LDAC
+Text Label 6350 4350 2    50   ~ 0
+RDY
+Text HLabel 7750 4050 2    50   Output ~ 0
+V_A
+Text HLabel 7750 4150 2    50   Output ~ 0
+V_B
+Text HLabel 7750 4250 2    50   Output ~ 0
+V_C
+Text HLabel 7750 4350 2    50   Output ~ 0
+V_D
+Wire Wire Line
+	7650 4050 7750 4050
+Wire Wire Line
+	7650 4150 7750 4150
+Wire Wire Line
+	7650 4250 7750 4250
+Wire Wire Line
+	7650 4350 7750 4350
+Wire Wire Line
+	4600 4400 4700 4400
+Wire Wire Line
+	4700 4400 4700 4500
+Wire Wire Line
+	4600 3900 4700 3900
+Wire Wire Line
+	4700 3900 4700 3800
+Wire Wire Line
+	4600 4000 4700 4000
+Wire Wire Line
+	4600 4100 4700 4100
+Wire Wire Line
+	4600 4200 4700 4200
+Wire Wire Line
+	4600 4300 4700 4300
+Wire Wire Line
+	6350 4050 6450 4050
+Wire Wire Line
+	6350 4150 6450 4150
+Wire Wire Line
+	6350 4250 6450 4250
+Wire Wire Line
+	6350 4350 6450 4350
+$Comp
+L Device:C C?
+U 1 1 5E3612C2
+P 5350 4350
+AR Path="/5E3612C2" Ref="C?"  Part="1" 
+AR Path="/5E2D7233/5E3612C2" Ref="C10"  Part="1" 
+F 0 "C10" H 5465 4396 50  0000 L CNN
+F 1 "4.7u" H 5465 4305 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5388 4200 50  0001 C CNN
+F 3 "~" H 5350 4350 50  0001 C CNN
+	1    5350 4350
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5E3618BA
+P 5350 4500
+AR Path="/5E3618BA" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D7233/5E3618BA" Ref="#PWR0101"  Part="1" 
+F 0 "#PWR0101" H 5350 4250 50  0001 C CNN
+F 1 "GND" H 5355 4327 50  0000 C CNN
+F 2 "" H 5350 4500 50  0001 C CNN
+F 3 "" H 5350 4500 50  0001 C CNN
+	1    5350 4500
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 4200 5350 4100
+Connection ~ 5350 4100
+$Comp
+L power:VDD #PWR0102
+U 1 1 5E3621F0
+P 5350 4000
+F 0 "#PWR0102" H 5350 3850 50  0001 C CNN
+F 1 "VDD" H 5367 4173 50  0000 C CNN
+F 2 "" H 5350 4000 50  0001 C CNN
+F 3 "" H 5350 4000 50  0001 C CNN
+	1    5350 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VDD #PWR0103
+U 1 1 5E362AAE
+P 4700 3800
+F 0 "#PWR0103" H 4700 3650 50  0001 C CNN
+F 1 "VDD" H 4717 3973 50  0000 C CNN
+F 2 "" H 4700 3800 50  0001 C CNN
+F 3 "" H 4700 3800 50  0001 C CNN
+	1    4700 3800
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

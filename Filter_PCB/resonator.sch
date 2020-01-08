@@ -1,0 +1,124 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 4 10
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:L L?
+U 1 1 5E300C42
+P 5200 3850
+AR Path="/5E300C42" Ref="L?"  Part="1" 
+AR Path="/5E2D6D86/5E300C42" Ref="L?"  Part="1" 
+AR Path="/5E2D6D86/5E2F8B0D/5E300C42" Ref="L1"  Part="1" 
+AR Path="/5E2D6D86/5E305E91/5E300C42" Ref="L2"  Part="1" 
+AR Path="/5E2D6D86/5E3067A0/5E300C42" Ref="L3"  Part="1" 
+F 0 "L1" V 5390 3850 50  0000 C CNN
+F 1 "L0" V 5299 3850 50  0000 C CNN
+F 2 "libs:Coilcraft_0603CS" H 5200 3850 50  0001 C CNN
+F 3 "~" H 5200 3850 50  0001 C CNN
+	1    5200 3850
+	0    -1   -1   0   
+$EndComp
+Text Label 5950 3850 1    50   ~ 0
+Vd-
+Text Label 5450 3750 1    50   ~ 0
+Vd+
+Connection ~ 5950 3850
+Wire Wire Line
+	5950 3850 6050 3850
+Wire Wire Line
+	5950 3850 5950 3950
+Wire Wire Line
+	5850 3850 5950 3850
+Wire Wire Line
+	5450 3250 5450 3150
+Wire Wire Line
+	5450 3850 5550 3850
+Connection ~ 5450 3850
+Wire Wire Line
+	5450 3550 5450 3850
+Wire Wire Line
+	5350 3850 5450 3850
+$Comp
+L power:GND #PWR?
+U 1 1 5E300C53
+P 5950 4250
+AR Path="/5E300C53" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D6D86/5E300C53" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D6D86/5E2F8B0D/5E300C53" Ref="#PWR04"  Part="1" 
+AR Path="/5E2D6D86/5E305E91/5E300C53" Ref="#PWR06"  Part="1" 
+AR Path="/5E2D6D86/5E3067A0/5E300C53" Ref="#PWR08"  Part="1" 
+F 0 "#PWR04" H 5950 4000 50  0001 C CNN
+F 1 "GND" H 5955 4077 50  0000 C CNN
+F 2 "" H 5950 4250 50  0001 C CNN
+F 3 "" H 5950 4250 50  0001 C CNN
+	1    5950 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E300C59
+P 5950 4100
+AR Path="/5E300C59" Ref="R?"  Part="1" 
+AR Path="/5E2D6D86/5E300C59" Ref="R?"  Part="1" 
+AR Path="/5E2D6D86/5E2F8B0D/5E300C59" Ref="R3"  Part="1" 
+AR Path="/5E2D6D86/5E305E91/5E300C59" Ref="R6"  Part="1" 
+AR Path="/5E2D6D86/5E3067A0/5E300C59" Ref="R9"  Part="1" 
+F 0 "R3" H 6020 4146 50  0000 L CNN
+F 1 "100k" H 6020 4055 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5880 4100 50  0001 C CNN
+F 3 "~" H 5950 4100 50  0001 C CNN
+	1    5950 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E300C5F
+P 5450 3400
+AR Path="/5E300C5F" Ref="R?"  Part="1" 
+AR Path="/5E2D6D86/5E300C5F" Ref="R?"  Part="1" 
+AR Path="/5E2D6D86/5E2F8B0D/5E300C5F" Ref="R2"  Part="1" 
+AR Path="/5E2D6D86/5E305E91/5E300C5F" Ref="R5"  Part="1" 
+AR Path="/5E2D6D86/5E3067A0/5E300C5F" Ref="R8"  Part="1" 
+F 0 "R2" H 5520 3446 50  0000 L CNN
+F 1 "100k" H 5520 3355 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5380 3400 50  0001 C CNN
+F 3 "~" H 5450 3400 50  0001 C CNN
+	1    5450 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Capacitance_ALT D?
+U 1 1 5E300C65
+P 5700 3850
+AR Path="/5E300C65" Ref="D?"  Part="1" 
+AR Path="/5E2D6D86/5E300C65" Ref="D?"  Part="1" 
+AR Path="/5E2D6D86/5E2F8B0D/5E300C65" Ref="D2"  Part="1" 
+AR Path="/5E2D6D86/5E305E91/5E300C65" Ref="D4"  Part="1" 
+AR Path="/5E2D6D86/5E3067A0/5E300C65" Ref="D6"  Part="1" 
+F 0 "D2" H 5700 4066 50  0000 C CNN
+F 1 "BB202" H 5700 3975 50  0000 C CNN
+F 2 "libs:D_SOD-523" H 5700 3850 50  0001 C CNN
+F 3 "~" H 5700 3850 50  0001 C CNN
+	1    5700 3850
+	1    0    0    -1  
+$EndComp
+Text HLabel 5450 3150 1    50   Input ~ 0
+Vpol
+Text HLabel 4950 3850 0    50   Input ~ 0
+In
+Wire Wire Line
+	4950 3850 5050 3850
+Text HLabel 6050 3850 2    50   Output ~ 0
+Out
+$EndSCHEMATC

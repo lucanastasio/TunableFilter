@@ -1,0 +1,115 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 10
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:C C?
+U 1 1 5E2FB9D0
+P 5050 3750
+AR Path="/5E2FB9D0" Ref="C?"  Part="1" 
+AR Path="/5E2D6D86/5E2F86AC/5E2FB9D0" Ref="C1"  Part="1" 
+AR Path="/5E2D6D86/5E305E8C/5E2FB9D0" Ref="C3"  Part="1" 
+AR Path="/5E2D6D86/5E30679B/5E2FB9D0" Ref="C5"  Part="1" 
+AR Path="/5E2D6D86/5E3071CF/5E2FB9D0" Ref="C7"  Part="1" 
+F 0 "C1" V 5302 3750 50  0000 C CNN
+F 1 "100n" V 5211 3750 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5088 3600 50  0001 C CNN
+F 3 "~" H 5050 3750 50  0001 C CNN
+	1    5050 3750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5E2FB9D6
+P 5550 3750
+AR Path="/5E2FB9D6" Ref="C?"  Part="1" 
+AR Path="/5E2D6D86/5E2F86AC/5E2FB9D6" Ref="C2"  Part="1" 
+AR Path="/5E2D6D86/5E305E8C/5E2FB9D6" Ref="C4"  Part="1" 
+AR Path="/5E2D6D86/5E30679B/5E2FB9D6" Ref="C6"  Part="1" 
+AR Path="/5E2D6D86/5E3071CF/5E2FB9D6" Ref="C8"  Part="1" 
+F 0 "C2" V 5802 3750 50  0000 C CNN
+F 1 "100n" V 5711 3750 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5588 3600 50  0001 C CNN
+F 3 "~" H 5550 3750 50  0001 C CNN
+	1    5550 3750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Capacitance_ALT D?
+U 1 1 5E2FB9DC
+P 5300 4000
+AR Path="/5E2FB9DC" Ref="D?"  Part="1" 
+AR Path="/5E2D6D86/5E2F86AC/5E2FB9DC" Ref="D1"  Part="1" 
+AR Path="/5E2D6D86/5E305E8C/5E2FB9DC" Ref="D3"  Part="1" 
+AR Path="/5E2D6D86/5E30679B/5E2FB9DC" Ref="D5"  Part="1" 
+AR Path="/5E2D6D86/5E3071CF/5E2FB9DC" Ref="D7"  Part="1" 
+F 0 "D1" V 5254 4079 50  0000 L CNN
+F 1 "BB202" V 5345 4079 50  0000 L CNN
+F 2 "libs:D_SOD-523" H 5300 4000 50  0001 C CNN
+F 3 "~" H 5300 4000 50  0001 C CNN
+	1    5300 4000
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5E2FB9E2
+P 5300 4150
+AR Path="/5E2FB9E2" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D6D86/5E2F86AC/5E2FB9E2" Ref="#PWR03"  Part="1" 
+AR Path="/5E2D6D86/5E305E8C/5E2FB9E2" Ref="#PWR05"  Part="1" 
+AR Path="/5E2D6D86/5E30679B/5E2FB9E2" Ref="#PWR07"  Part="1" 
+AR Path="/5E2D6D86/5E3071CF/5E2FB9E2" Ref="#PWR09"  Part="1" 
+F 0 "#PWR03" H 5300 3900 50  0001 C CNN
+F 1 "GND" H 5305 3977 50  0000 C CNN
+F 2 "" H 5300 4150 50  0001 C CNN
+F 3 "" H 5300 4150 50  0001 C CNN
+	1    5300 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E2FB9E8
+P 5300 3300
+AR Path="/5E2FB9E8" Ref="R?"  Part="1" 
+AR Path="/5E2D6D86/5E2F86AC/5E2FB9E8" Ref="R1"  Part="1" 
+AR Path="/5E2D6D86/5E305E8C/5E2FB9E8" Ref="R4"  Part="1" 
+AR Path="/5E2D6D86/5E30679B/5E2FB9E8" Ref="R7"  Part="1" 
+AR Path="/5E2D6D86/5E3071CF/5E2FB9E8" Ref="R10"  Part="1" 
+F 0 "R1" H 5370 3346 50  0000 L CNN
+F 1 "100k" H 5370 3255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5230 3300 50  0001 C CNN
+F 3 "~" H 5300 3300 50  0001 C CNN
+	1    5300 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5200 3750 5300 3750
+Wire Wire Line
+	5300 3850 5300 3750
+Connection ~ 5300 3750
+Wire Wire Line
+	5300 3750 5400 3750
+Wire Wire Line
+	5300 3450 5300 3750
+Wire Wire Line
+	5300 3150 5300 3050
+Text Label 5300 3650 1    50   ~ 0
+Vd
+Text HLabel 5300 3050 1    50   Input ~ 0
+Vpol
+Text HLabel 4900 3750 0    50   Input ~ 0
+In
+Text HLabel 5700 3750 2    50   Output ~ 0
+Out
+$EndSCHEMATC

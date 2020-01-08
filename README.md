@@ -1,5 +1,3 @@
-README.tex
-
 # Tunable Filter with varactors
 ## Idea (our goal)
 The idea of this project is to design a tunable filter in order to move the resonance frequency with the usage of varactors. The varactors are used in place of the capacitors in resonators thanks of the property to vary their capacitance as a function of the voltage applied across their terminals. So the varactor is the tuning component in this project. The use of this component will be explained in the following notes.

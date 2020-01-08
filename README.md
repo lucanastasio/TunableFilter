@@ -10,9 +10,9 @@ The design specifications used in the design of this filter are the following:
 - ***Type of Response:*** Chebyshev (equi-ripple)
 - ***Order of the filter:*** Third Order
 - ***Resonant frequencies:***
-    - $f_0$
-    - $f_1$
-    - $f_2$
+	- <img src="/tex/85e88daa56884880b8a3141b22f439bc.svg?invert_in_darkmode&sanitize=true" align=middle width=14.60053319999999pt height=22.831056599999986pt/>
+	- <img src="/tex/5872d29d239f95cc7a5f43cfdd14fdae.svg?invert_in_darkmode&sanitize=true" align=middle width=14.60053319999999pt height=22.831056599999986pt/>
+	- <img src="/tex/f6366b38f9364f745b5400c328e938d3.svg?invert_in_darkmode&sanitize=true" align=middle width=14.60053319999999pt height=22.831056599999986pt/>
 
 - ***Bandwitdh:*** (constant for all resonant frequencies)
 - ***Ports Impedances:*** <img src="/tex/cdc816ffd7b6d1b76a62ead02ba143e2.svg?invert_in_darkmode&sanitize=true" align=middle width=68.82416969999998pt height=22.465723500000017pt/>
@@ -67,15 +67,15 @@ The schematic where all the impedence inverters are replaced with their respecti
 The formulas used to calculate the values of the capacitors are:
 
 - For the impedence inverter at the source: 
-    - shunt capacitor $C_{0i} = \frac{\sqrt{1-\left(\frac{K_0}{R_0}\right)^2}}{K_0 \omega_0}$
-    - series capacitor $C_{s0i}=-C_{0i}-\frac{1}{\left(R_0 \omega_0\right)^2 C_{0i}}$
+	- shunt capacitor <img src="/tex/51d3943b76434ae01c373d60ae7021fb.svg?invert_in_darkmode&sanitize=true" align=middle width=119.49824699999998pt height=65.42513010000002pt/>
+	- series capacitor <img src="/tex/334145d17cc535c19724aee9d200d1d9.svg?invert_in_darkmode&sanitize=true" align=middle width=178.45430789999998pt height=27.77565449999998pt/>
 - For the second impedence inverter:
-    - all the capacitors have the same value $C_{1i} =\frac{1}{\omega_0 K_1}$
+	- all the capacitors have the same value <img src="/tex/356e534cd9558f5268910152e8f83023.svg?invert_in_darkmode&sanitize=true" align=middle width=79.82265389999999pt height=27.77565449999998pt/>
 - For the second impedence inverter:
-    - all the capacitors have the same value $C_{2i} =\frac{1}{\omega_0 K_2}$
+	- all the capacitors have the same value <img src="/tex/099f2c1e9990918a3bbeece632e7806a.svg?invert_in_darkmode&sanitize=true" align=middle width=79.82265389999999pt height=27.77565449999998pt/>
 - For the impedence inverter at the load: 
-    - shunt capacitor $C_{3i} = \frac{\sqrt{1-\left(\frac{K_3}{R_0}\right)^2}}{K_3 \omega_0}$
-    - series capacitor $C_{s3i}=-C_{3i}-\frac{1}{\left(R_0 \omega_0\right)^2 C_{3i}}$
+	- shunt capacitor <img src="/tex/505eff73a0d81b205722124c0b3b7f1a.svg?invert_in_darkmode&sanitize=true" align=middle width=119.49824699999998pt height=65.42513010000002pt/>
+	- series capacitor <img src="/tex/53be8c63ebbc14a2a752c28813dfbdef.svg?invert_in_darkmode&sanitize=true" align=middle width=178.45430789999998pt height=27.77565449999998pt/>
 
 For the symmetry of the circuit we have that <img src="/tex/0f3182696059f04bb88a094b02cee4eb.svg?invert_in_darkmode&sanitize=true" align=middle width=81.05285099999999pt height=22.465723500000017pt/> and <img src="/tex/10525d96a26f5068692a7df2dcd060db.svg?invert_in_darkmode&sanitize=true" align=middle width=71.67699989999998pt height=22.465723500000017pt/>.
 

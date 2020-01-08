@@ -10,9 +10,9 @@ The design specifications used in the design of this filter are the following:
 - ***Type of Response:*** Chebyshev (equi-ripple)
 - ***Order of the filter:*** Third Order
 - ***Resonant frequencies:***
-    - $f_0$
-    - $f_1$
-    - $f_2$
+	- $f_0$
+	- $f_1$
+	- $f_2$
 
 - ***Bandwitdh:*** (constant for all resonant frequencies)
 - ***Ports Impedances:*** $Z_0=50\Omega$
@@ -69,15 +69,15 @@ The schematic where all the impedence inverters are replaced with their respecti
 The formulas used to calculate the values of the capacitors are:
 
 - For the impedence inverter at the source: 
-    - shunt capacitor $C_{0i} = \frac{\sqrt{1-\left(\frac{K_0}{R_0}\right)^2}}{K_0 \omega_0}$
-    - series capacitor $C_{s0i}=-C_{0i}-\frac{1}{\left(R_0 \omega_0\right)^2 C_{0i}}$
+	- shunt capacitor $C_{0i} = \frac{\sqrt{1-\left(\frac{K_0}{R_0}\right)^2}}{K_0 \omega_0}$
+	- series capacitor $C_{s0i}=-C_{0i}-\frac{1}{\left(R_0 \omega_0\right)^2 C_{0i}}$
 - For the second impedence inverter:
-    - all the capacitors have the same value $C_{1i} =\frac{1}{\omega_0 K_1}$
+	- all the capacitors have the same value $C_{1i} =\frac{1}{\omega_0 K_1}$
 - For the second impedence inverter:
-    - all the capacitors have the same value $C_{2i} =\frac{1}{\omega_0 K_2}$
+	- all the capacitors have the same value $C_{2i} =\frac{1}{\omega_0 K_2}$
 - For the impedence inverter at the load: 
-    - shunt capacitor $C_{3i} = \frac{\sqrt{1-\left(\frac{K_3}{R_0}\right)^2}}{K_3 \omega_0}$
-    - series capacitor $C_{s3i}=-C_{3i}-\frac{1}{\left(R_0 \omega_0\right)^2 C_{3i}}$
+	- shunt capacitor $C_{3i} = \frac{\sqrt{1-\left(\frac{K_3}{R_0}\right)^2}}{K_3 \omega_0}$
+	- series capacitor $C_{s3i}=-C_{3i}-\frac{1}{\left(R_0 \omega_0\right)^2 C_{3i}}$
 
 For the symmetry of the circuit we have that $C_{s3i}=C_{s0i}$ and $C0i=C_{3i}$.
 

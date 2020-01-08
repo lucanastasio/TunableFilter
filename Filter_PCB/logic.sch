@@ -39,13 +39,13 @@ F 3 "" H 7050 4550 50  0001 C CNN
 	1    7050 4550
 	1    0    0    -1  
 $EndComp
-Text Label 4700 4000 0    50   ~ 0
+Text Label 4400 4100 0    50   ~ 0
 SCL
-Text Label 4700 4100 0    50   ~ 0
+Text Label 3700 4100 2    50   ~ 0
 SDA
-Text Label 4700 4200 0    50   ~ 0
+Text Label 3700 4000 2    50   ~ 0
 ~LDAC
-Text Label 4700 4300 0    50   ~ 0
+Text Label 4400 4000 0    50   ~ 0
 RDY
 $Comp
 L power:VDDA #PWR?
@@ -122,27 +122,27 @@ $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5E32B202
-P 4700 4500
+P 3700 4300
 AR Path="/5E32B202" Ref="#PWR?"  Part="1" 
 AR Path="/5E2D7233/5E32B202" Ref="#PWR011"  Part="1" 
-F 0 "#PWR011" H 4700 4250 50  0001 C CNN
-F 1 "GND" H 4705 4327 50  0000 C CNN
-F 2 "" H 4700 4500 50  0001 C CNN
-F 3 "" H 4700 4500 50  0001 C CNN
-	1    4700 4500
+F 0 "#PWR011" H 3700 4050 50  0001 C CNN
+F 1 "GND" H 3705 4127 50  0000 C CNN
+F 2 "" H 3700 4300 50  0001 C CNN
+F 3 "" H 3700 4300 50  0001 C CNN
+	1    3700 4300
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_01x06_Male J?
+L Connector_Generic:Conn_02x03_Odd_Even J?
 U 1 1 5E32B208
-P 4400 4200
+P 4000 4100
 AR Path="/5E32B208" Ref="J?"  Part="1" 
 AR Path="/5E2D7233/5E32B208" Ref="J3"  Part="1" 
-F 0 "J3" H 4250 4200 50  0000 C CNN
-F 1 "Conn_01x06_Male" H 4400 4700 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical_SMD" H 4400 4200 50  0001 C CNN
-F 3 "~" H 4400 4200 50  0001 C CNN
-	1    4400 4200
+F 0 "J3" H 4050 3900 50  0000 C CNN
+F 1 "Conn_01x06_Male" H 4000 4600 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical_SMD" H 4000 4100 50  0001 C CNN
+F 3 "~" H 4000 4100 50  0001 C CNN
+	1    4000 4100
 	1    0    0    1   
 $EndComp
 Wire Wire Line
@@ -174,21 +174,13 @@ Wire Wire Line
 Wire Wire Line
 	7650 4350 7750 4350
 Wire Wire Line
-	4600 4400 4700 4400
+	4300 4100 4400 4100
 Wire Wire Line
-	4700 4400 4700 4500
+	3800 4100 3700 4100
 Wire Wire Line
-	4600 3900 4700 3900
+	3800 4000 3700 4000
 Wire Wire Line
-	4700 3900 4700 3800
-Wire Wire Line
-	4600 4000 4700 4000
-Wire Wire Line
-	4600 4100 4700 4100
-Wire Wire Line
-	4600 4200 4700 4200
-Wire Wire Line
-	4600 4300 4700 4300
+	4300 4000 4400 4000
 Wire Wire Line
 	6350 4050 6450 4050
 Wire Wire Line
@@ -240,12 +232,20 @@ $EndComp
 $Comp
 L power:VDD #PWR0103
 U 1 1 5E362AAE
-P 4700 3800
-F 0 "#PWR0103" H 4700 3650 50  0001 C CNN
-F 1 "VDD" H 4717 3973 50  0000 C CNN
-F 2 "" H 4700 3800 50  0001 C CNN
-F 3 "" H 4700 3800 50  0001 C CNN
-	1    4700 3800
+P 4650 3900
+F 0 "#PWR0103" H 4650 3750 50  0001 C CNN
+F 1 "VDD" H 4667 4073 50  0000 C CNN
+F 2 "" H 4650 3900 50  0001 C CNN
+F 3 "" H 4650 3900 50  0001 C CNN
+	1    4650 3900
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	3800 4200 3700 4200
+Wire Wire Line
+	3700 4200 3700 4300
+Wire Wire Line
+	4650 3900 4650 4200
+Wire Wire Line
+	4650 4200 4300 4200
 $EndSCHEMATC

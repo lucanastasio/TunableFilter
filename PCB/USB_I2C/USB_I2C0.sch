@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 11 11
+Sheet 1 1
 Title ""
 Date ""
 Rev ""
@@ -14,33 +14,26 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Interface_USB:CP2112 U?
+L Interface_USB:CP2112 U1
 U 1 1 5E32E927
 P 5950 3350
-AR Path="/5E32E927" Ref="U?"  Part="1" 
+AR Path="/5E32E927" Ref="U1"  Part="1" 
 AR Path="/5E2D7233/5E32E927" Ref="U?"  Part="1" 
 AR Path="/5E2D7233/5E32D9D5/5E32E927" Ref="U2"  Part="1" 
-F 0 "U2" H 5550 4050 50  0000 C CNN
+F 0 "U1" H 5550 4050 50  0000 C CNN
 F 1 "CP2112" H 6250 4050 50  0000 C CNN
 F 2 "Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm" H 6400 2650 50  0001 L CNN
 F 3 "https://www.silabs.com/documents/public/data-sheets/cp2112-datasheet.pdf" H 6000 2350 50  0001 C CNN
 	1    5950 3350
 	1    0    0    -1  
 $EndComp
-Text HLabel 6650 2850 2    50   BiDi ~ 0
-SDA
-Text HLabel 6650 2950 2    50   BiDi ~ 0
-SCL
-Text HLabel 6650 3350 2    50   3State ~ 0
-IO2
-Text HLabel 6650 3450 2    50   3State ~ 0
-IO3
 $Comp
 L power:VBUS #PWR?
 U 1 1 5E3348EB
 P 1900 3050
 AR Path="/5E2D7233/5E3348EB" Ref="#PWR?"  Part="1" 
 AR Path="/5E2D7233/5E32D9D5/5E3348EB" Ref="#PWR018"  Part="1" 
+AR Path="/5E3348EB" Ref="#PWR018"  Part="1" 
 F 0 "#PWR018" H 1900 2900 50  0001 C CNN
 F 1 "VBUS" H 1915 3223 50  0000 C CNN
 F 2 "" H 1900 3050 50  0001 C CNN
@@ -132,6 +125,7 @@ U 1 1 5E344ECF
 P 3300 3200
 AR Path="/5E2D7233/5E344ECF" Ref="#PWR?"  Part="1" 
 AR Path="/5E2D7233/5E32D9D5/5E344ECF" Ref="#PWR019"  Part="1" 
+AR Path="/5E344ECF" Ref="#PWR019"  Part="1" 
 F 0 "#PWR019" H 3300 3050 50  0001 C CNN
 F 1 "VBUS" H 3315 3373 50  0000 C CNN
 F 2 "" H 3300 3200 50  0001 C CNN
@@ -189,6 +183,7 @@ U 1 1 5E335C16
 P 5150 3350
 AR Path="/5E2D7233/5E335C16" Ref="#PWR?"  Part="1" 
 AR Path="/5E2D7233/5E32D9D5/5E335C16" Ref="#PWR023"  Part="1" 
+AR Path="/5E335C16" Ref="#PWR023"  Part="1" 
 F 0 "#PWR023" H 5150 3200 50  0001 C CNN
 F 1 "VBUS" H 5165 3523 50  0000 C CNN
 F 2 "" H 5150 3350 50  0001 C CNN
@@ -235,56 +230,135 @@ Wire Wire Line
 Wire Wire Line
 	6050 4250 5950 4250
 Connection ~ 5950 4250
-Text HLabel 7850 2550 3    50   BiDi ~ 0
-SDA
-Text HLabel 8350 2550 3    50   BiDi ~ 0
+Wire Wire Line
+	4050 4600 3950 4600
+Wire Wire Line
+	4050 4700 3950 4700
+Text Label 2750 4800 0    50   ~ 0
 SCL
+Text Label 2050 4800 2    50   ~ 0
+SDA
+Text Label 2050 4700 2    50   ~ 0
+~LDAC
+Text Label 2750 4700 0    50   ~ 0
+RDY
 $Comp
-L Device:R R11
-U 1 1 5E34FE37
-P 7850 2300
-F 0 "R11" H 7920 2346 50  0000 L CNN
-F 1 "1.5k" H 7920 2255 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 7780 2300 50  0001 C CNN
-F 3 "~" H 7850 2300 50  0001 C CNN
-	1    7850 2300
+L power:GND #PWR0101
+U 1 1 5E16896A
+P 2050 5000
+AR Path="/5E16896A" Ref="#PWR0101"  Part="1" 
+AR Path="/5E2D7233/5E16896A" Ref="#PWR?"  Part="1" 
+AR Path="/5E166F68/5E16896A" Ref="#PWR?"  Part="1" 
+F 0 "#PWR0101" H 2050 4750 50  0001 C CNN
+F 1 "GND" H 2055 4827 50  0000 C CNN
+F 2 "" H 2050 5000 50  0001 C CNN
+F 3 "" H 2050 5000 50  0001 C CNN
+	1    2050 5000
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR026
-U 1 1 5E350217
-P 7850 2150
-F 0 "#PWR026" H 7850 2000 50  0001 C CNN
-F 1 "+3.3V" H 7865 2323 50  0000 C CNN
-F 2 "" H 7850 2150 50  0001 C CNN
-F 3 "" H 7850 2150 50  0001 C CNN
-	1    7850 2150
+L Connector_Generic:Conn_02x03_Odd_Even J1
+U 1 1 5E168970
+P 2350 4800
+AR Path="/5E168970" Ref="J1"  Part="1" 
+AR Path="/5E2D7233/5E168970" Ref="J?"  Part="1" 
+AR Path="/5E166F68/5E168970" Ref="J?"  Part="1" 
+F 0 "J1" H 2400 4600 50  0000 C CNN
+F 1 "Conn_01x06_Male" H 2350 5300 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical_SMD" H 2350 4800 50  0001 C CNN
+F 3 "~" H 2350 4800 50  0001 C CNN
+	1    2350 4800
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	2650 4800 2750 4800
+Wire Wire Line
+	2150 4800 2050 4800
+Wire Wire Line
+	2150 4700 2050 4700
+Wire Wire Line
+	2650 4700 2750 4700
+Wire Wire Line
+	2150 4900 2050 4900
+Wire Wire Line
+	2050 4900 2050 5000
+Wire Wire Line
+	3000 4600 3000 4900
+Wire Wire Line
+	3000 4900 2650 4900
+Wire Wire Line
+	4050 4800 3950 4800
+Wire Wire Line
+	4050 4900 3950 4900
+Text Label 6650 2850 0    50   ~ 0
+SDA
+Text Label 6650 3350 0    50   ~ 0
+~LDAC
+Text Label 6650 2950 0    50   ~ 0
+SCL
+Text Label 6650 3450 0    50   ~ 0
+RDY
+$Comp
+L power:VBUS #PWR?
+U 1 1 5E16EB12
+P 3000 4600
+AR Path="/5E2D7233/5E16EB12" Ref="#PWR?"  Part="1" 
+AR Path="/5E2D7233/5E32D9D5/5E16EB12" Ref="#PWR?"  Part="1" 
+AR Path="/5E16EB12" Ref="#PWR0104"  Part="1" 
+F 0 "#PWR0104" H 3000 4450 50  0001 C CNN
+F 1 "VBUS" H 3015 4773 50  0000 C CNN
+F 2 "" H 3000 4600 50  0001 C CNN
+F 3 "" H 3000 4600 50  0001 C CNN
+	1    3000 4600
 	1    0    0    -1  
 $EndComp
+Text Label 3950 4800 2    50   ~ 0
+SDA
+Text Label 3950 4700 2    50   ~ 0
+~LDAC
+Text Label 3950 4900 2    50   ~ 0
+SCL
+Text Label 3950 4600 2    50   ~ 0
+RDY
 $Comp
-L Device:R R12
-U 1 1 5E35201B
-P 8350 2300
-F 0 "R12" H 8420 2346 50  0000 L CNN
-F 1 "1.5k" H 8420 2255 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 8280 2300 50  0001 C CNN
-F 3 "~" H 8350 2300 50  0001 C CNN
-	1    8350 2300
-	1    0    0    -1  
+L Device:R_Pack04 RN1
+U 1 1 5E1745F0
+P 4250 4800
+F 0 "RN1" V 3950 4750 50  0000 L CNN
+F 1 "1k" V 4450 4750 50  0000 L CNN
+F 2 "Resistor_SMD:R_Array_Convex_4x0603" V 4525 4800 50  0001 C CNN
+F 3 "~" H 4250 4800 50  0001 C CNN
+	1    4250 4800
+	0    1    1    0   
 $EndComp
 $Comp
-L power:+3.3V #PWR027
-U 1 1 5E352021
-P 8350 2150
-F 0 "#PWR027" H 8350 2000 50  0001 C CNN
-F 1 "+3.3V" H 8365 2323 50  0000 C CNN
-F 2 "" H 8350 2150 50  0001 C CNN
-F 3 "" H 8350 2150 50  0001 C CNN
-	1    8350 2150
+L power:+3.3V #PWR0102
+U 1 1 5E17548D
+P 4550 4500
+F 0 "#PWR0102" H 4550 4350 50  0001 C CNN
+F 1 "+3.3V" H 4565 4673 50  0000 C CNN
+F 2 "" H 4550 4500 50  0001 C CNN
+F 3 "" H 4550 4500 50  0001 C CNN
+	1    4550 4500
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7850 2450 7850 2550
+	4550 4600 4450 4600
 Wire Wire Line
-	8350 2450 8350 2550
+	4450 4700 4550 4700
+Connection ~ 4550 4700
+Wire Wire Line
+	4550 4700 4550 4600
+Wire Wire Line
+	4450 4800 4550 4800
+Wire Wire Line
+	4550 4800 4550 4900
+Wire Wire Line
+	4550 4900 4450 4900
+Connection ~ 4550 4800
+Wire Wire Line
+	4550 4700 4550 4800
+Wire Wire Line
+	4550 4500 4550 4600
+Connection ~ 4550 4600
 $EndSCHEMATC

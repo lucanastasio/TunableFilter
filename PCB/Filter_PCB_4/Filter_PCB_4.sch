@@ -26,8 +26,8 @@ $EndSheet
 $Sheet
 S 4600 3700 550  500 
 U 5E2D7233
-F0 "logic" 50
-F1 "logic.sch" 50
+F0 "DAC" 50
+F1 "DAC.sch" 50
 F2 "V_A" O R 5150 3800 50 
 F3 "V_B" O R 5150 3900 50 
 F4 "V_C" O R 5150 4000 50 

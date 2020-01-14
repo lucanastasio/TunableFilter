@@ -14,10 +14,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Connector:Conn_Coaxial J?
+L Connector:Conn_Coaxial J1
 U 1 1 5E2E993F
 P 2250 4050
-AR Path="/5E2E993F" Ref="J?"  Part="1" 
+AR Path="/5E2E993F" Ref="J1"  Part="1" 
 AR Path="/5E2D6D86/5E2E993F" Ref="J1"  Part="1" 
 F 0 "J1" H 2250 4300 50  0000 C CNN
 F 1 "Conn_Coaxial" H 2250 4200 50  0000 C CNN
@@ -27,10 +27,10 @@ F 3 " ~" H 2250 4050 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0101
 U 1 1 5E2E9945
 P 2250 4250
-AR Path="/5E2E9945" Ref="#PWR?"  Part="1" 
+AR Path="/5E2E9945" Ref="#PWR0101"  Part="1" 
 AR Path="/5E2D6D86/5E2E9945" Ref="#PWR01"  Part="1" 
 F 0 "#PWR01" H 2250 4000 50  0001 C CNN
 F 1 "GND" H 2255 4077 50  0000 C CNN
@@ -44,10 +44,10 @@ Wire Wire Line
 Wire Wire Line
 	9100 4050 9500 4050
 $Comp
-L Connector:Conn_Coaxial J?
+L Connector:Conn_Coaxial J2
 U 1 1 5E2E9A2C
 P 9700 4050
-AR Path="/5E2E9A2C" Ref="J?"  Part="1" 
+AR Path="/5E2E9A2C" Ref="J2"  Part="1" 
 AR Path="/5E2D6D86/5E2E9A2C" Ref="J2"  Part="1" 
 F 0 "J2" H 9700 4300 50  0000 C CNN
 F 1 "Conn_Coaxial" H 9700 4200 50  0000 C CNN
@@ -57,10 +57,10 @@ F 3 " ~" H 9700 4050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0102
 U 1 1 5E2E9A32
 P 9700 4250
-AR Path="/5E2E9A32" Ref="#PWR?"  Part="1" 
+AR Path="/5E2E9A32" Ref="#PWR0102"  Part="1" 
 AR Path="/5E2D6D86/5E2E9A32" Ref="#PWR02"  Part="1" 
 F 0 "#PWR02" H 9700 4000 50  0001 C CNN
 F 1 "GND" H 9705 4077 50  0000 C CNN

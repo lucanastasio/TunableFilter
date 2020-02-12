@@ -50,6 +50,8 @@ class MCP4728:
 
 	def __init__(self, bus=None, address=DEV_CODE, addrBits=0x00, update=None):
 		self.address = address | addrBits
+		if isinstance(bus, str):
+			bus = None if len(bus) == 0 else bus
 		self.i2c = SMBus(bus)
 		self.channel = self.DAC(parentDac=self)
 		self.EEPROMready = None

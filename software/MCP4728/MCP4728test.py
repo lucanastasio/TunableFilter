@@ -1,5 +1,5 @@
 """
-MCP4728 GUI
+MCP4728 Python Library
 Copyright (C) 2019 Luca Anastasio
 <anastasio.lu@gmail.com>
 
@@ -17,10 +17,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from MCP4728App import MCP4728App, QtWidgets, sys
+from MCP4728 import MCP4728
+from MCP4728Channel import Channel as ch
+from glob import glob
 
-if __name__ == "__main__":
-	QApp = QtWidgets.QApplication([])
-	App = MCP4728App()
-	App.show()
-	sys.exit(QApp.exec())
+bus = glob('/dev/i2c*')
+
+dac = MCP4728(bus=bus[0], update=True)
+
+dac.channel.A.setVref(2.048)
+dac.channel.A.setVout(1.024)
